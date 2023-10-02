@@ -1,0 +1,8 @@
+.header {
+  display: flex;
+  gap: 6px;
+  background: var(--brandColor);
+  padding: 16px 0px 16px 32px;
+  color: var(--whiteBasic);
+  margin-bottom: 16px;
+}
