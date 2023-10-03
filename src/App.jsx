@@ -11,7 +11,7 @@ import TranslatedText from "./components/TranslatedText/TranslatedText";
 
 export default function App() {
   const [details, setDetails] = useState([]);
-  const [isLoading, setIsLoding] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const translatedText = transformArrayToString(details);
 
@@ -19,7 +19,7 @@ export default function App() {
     <>
       <Header />
       <div className={styles.wrapper}>
-        <Form setDetails={setDetails} setIsLoding={setIsLoding} />
+        <Form setDetails={setDetails} setIsLoading={setIsLoading} />
         {details.length > 0 ? (
           <TranslatedText text={translatedText} />
         ) : (
