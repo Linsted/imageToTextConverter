@@ -9,21 +9,27 @@ import Input from "../Input/Input";
 
 import checkExtensions from "../../services/helpers/checkExtensions";
 import styles from "./Form.module.css";
-import { inputType, labelText } from "./constants";
+import {
+  unknownError,
+  inputType,
+  labelText,
+  unselectedFileError,
+  wrongFileTypeError,
+} from "./constants";
 
 const Form = ({ setDetails, setIsLoading }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const fileInput = event.target.file;
-    const fileName = fileInput.files[0].name;
+    const fileName = fileInput.files[0]?.name;
 
     if (fileInput.files.length === 0) {
-      return toast.error("Please add file!");
+      return toast.error(unselectedFileError);
     }
 
     if (!checkExtensions(fileName)) {
-      return toast.error("Wrong file type!");
+      return toast.error(wrongFileTypeError);
     }
 
     try {
@@ -37,7 +43,7 @@ const Form = ({ setDetails, setIsLoading }) => {
     } catch (error) {
       console.error(error);
 
-      toast.error("Ooops... An error occurred, please try later.");
+      toast.error(unknownError);
     } finally {
       setIsLoading(false);
     }
