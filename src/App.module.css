@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding-inline: 32px;
+}
+
+.fallbackText {
+  font-size: 20px;
+  margin-inline: auto;
+  color: var(--fontColor);
+}
+
+.spinnerWrapper {
+  display: flex;
+  justify-content: center;
+}

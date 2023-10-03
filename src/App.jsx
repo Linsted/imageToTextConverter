@@ -1,15 +1,35 @@
-import Button from "./components/Button/Button";
-import BUTTON_TYPES from "./components/Button/constants";
-import Form from "./components/Form/Form";
-import Input from "./components/Input/Input";
+import { useState } from "react";
+import { Toaster } from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
 
-function App() {
+import Form from "./components/Form/Form";
+import "./index.css";
+import styles from "./App.module.css";
+import Header from "./components/Header/Header";
+import transformArrayToString from "./services/helpers/transformArrayToString";
+import TranslatedText from "./components/TranslatedText/TranslatedText";
+
+export default function App() {
+  const [details, setDetails] = useState([]);
+  const [isLoading, setIsLoding] = useState(false);
+
+  const translatedText = transformArrayToString(details);
+
   return (
-    <div>
-      <Button text="Submit" buttonType={BUTTON_TYPES.SUBMIT} />
-      <Input label="testLabel" name="testName" type="testType" />
-    </div>
+    <>
+      <Header />
+      <div className={styles.wrapper}>
+        <Form setDetails={setDetails} setIsLoding={setIsLoding} />
+        {details.length > 0 ? (
+          <TranslatedText text={translatedText} />
+        ) : (
+          <h2 className={styles.fallbackText}>Please, make your request.</h2>
+        )}
+        <Toaster position="top-center" reverseOrder={false} />
+      </div>
+      <div className={styles.spinnerWrapper}>
+        <ClipLoader loading={isLoading} color="#5082e6" />
+      </div>
+    </>
   );
 }
-
-export default App;
